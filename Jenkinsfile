@@ -12,7 +12,7 @@ pipeline {
 	  }
 	stage('DockerHub Push'){
 	  steps{
-	  withCredentials([string(credentialsId: 'dhub-pass', variable: 'dhub-pass')]) {
+	  withCredentials([string(credentialsId: 'git-user', variable: 'dhub-pass')]) {
            sh "docker login -u 966145 -p ${dhub-pass}"
 		   sh "docker push 966145/myimg:${DOCKER_TAG}"
            }

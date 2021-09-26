@@ -12,11 +12,30 @@ pipeline {
 	  }
 	stage('DockerHub Push'){
 	  steps{
-	  withCredentials([string(credentialsId: 'dhub-pass', variable: 'pass')]) {
-           sh "docker login -u 966145 -p ${pass}"
+	  withCredentials([string(credentialsId: 'dhub-pass', variable: 'dockerhubpwd')]) {
+           sh "docker login -u 966145 -p ${dockerhubpwd}"
 		   sh "docker push 966145/myimg:${DOCKER_TAG}"
            }
 	    }
+	  }
+	  stage('Deploy to k8s'){
+	    steps{
+		  sh "chmod +x changetag.sh"
+		  sh "./changetag.sh ${DOCKER_TAG}"
+		  sshagent(['kops-machine']){
+		    sh "scp -o StrictHostKeyChecking=no pod.yaml ubuntu@172.20.47.50:/home/ubuntu/"
+			script{
+			    try{
+				  sh "ssh ubuntu@172.20.47.50 kubectl apply -f ."				 
+				}
+				catch(error){
+				  sh "ssh ubuntu@172.20.47.50 kubectl create -f ."
+				}
+			}
+			
+		  }
+		}
+	  
 	  }
     }
 

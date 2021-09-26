@@ -23,13 +23,13 @@ pipeline {
 		  sh "chmod +x changetag.sh"
 		  sh "./changetag.sh ${DOCKER_TAG}"
 		  sshagent(['kops-machine']){
-		    sh "scp -o StrictHostKeyChecking=no pod.yaml ubuntu@172.20.47.50:/home/ubuntu/"
+		    sh "scp -o StrictHostKeyChecking=no pod.yaml ubuntu@172.20.48.127:/home/ubuntu/"
 			script{
 			    try{
-				  sh "ssh ubuntu@172.20.47.50 kubectl apply -f ."				 
+				  sh "ssh ubuntu@172.20.48.127 kubectl apply -f ."				 
 				}
 				catch(error){
-				  sh "ssh ubuntu@172.20.47.50 kubectl create -f ."
+				  sh "ssh ubuntu@172.20.48.127 kubectl create -f ."
 				}
 			}
 			

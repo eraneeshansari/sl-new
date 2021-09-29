@@ -4,7 +4,7 @@ stages{
    stage('Build Docker Image')
         {
       steps{
-          sh "docker build . -t 966145/japp:${TAG}"
+          sh "docker build . -t 966145/japp:${currentBuild.number}"
         }
       }
    stage('Push Docker Image')

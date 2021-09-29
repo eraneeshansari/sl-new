@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    environment {
-#           TAG = gittag()
-               } 
 stages{
    stage('Build Docker Image')
         {
@@ -28,8 +25,3 @@ stages{
 
 }
 
-#def gittag() {
-#      def tag = sh script: 'git rev-parse HEAD', returnStdout: true
-#      return tag
-#
-#}

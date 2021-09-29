@@ -2,6 +2,9 @@
 i am file 3 
 ####
 here is new data
+
+adsf
+d
 ##
 
 #

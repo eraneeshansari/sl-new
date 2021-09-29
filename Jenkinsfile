@@ -15,8 +15,8 @@ stages{
      steps{
         withCredentials([string(credentialsId: 'hubpass', variable: 'hpass')]) {
         sh "docker login -u 966145 -p ${hpass}"
-        sh "docker push 966145/japp:${TAG}"
-        sh "echo ${currentBuild.number}"
+        sh "docker push 966145/japp:${currentBuild.number}"
+       
 }
           
 }
@@ -28,8 +28,8 @@ stages{
 
 }
 
-def gittag() {
-      def tag = sh script: 'git rev-parse HEAD', returnStdout: true
-      return tag
-
-}
+#def gittag() {
+#      def tag = sh script: 'git rev-parse HEAD', returnStdout: true
+#      return tag
+#
+#}

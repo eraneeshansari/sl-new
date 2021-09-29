@@ -16,7 +16,7 @@ stages{
         withCredentials([string(credentialsId: 'hubpass', variable: 'hpass')]) {
         sh "docker login -u 966145 -p ${hpass}"
         sh "docker push 966145/japp:${TAG}"
-        sh "echo "current build number: ${currentBuild.number}""
+        sh "echo ${currentBuild.number}"
 }
           
 }

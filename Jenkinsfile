@@ -1,8 +1,8 @@
 pipeline{
     agent any
-    environment {
-           TAG = gittag()
-               } 
+#    environment {
+#           TAG = gittag()
+#               } 
 stages{
    stage('Build Docker Image')
         {

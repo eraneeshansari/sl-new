@@ -14,3 +14,9 @@ stages{
 }
 
 }
+
+def gittag() {
+      def tag = sh script: 'git rev-parse HEAD', returnStdOut: true
+      return tag
+
+}

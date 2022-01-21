@@ -1,7 +1,0 @@
- hello , i am file 2
- data data data...
-afdaf
-asd
-f
-asdfa
-hello new data
